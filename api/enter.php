@@ -27,6 +27,10 @@
 		}
 	}
 	
+	function isInside(){
+		return 0;
+	}
+	
 	function exists($conn, $rfid){
 		
 		$stmt = $conn->prepare("SELECT * FROM `rfids` WHERE `rfid` = ?");
@@ -49,4 +53,24 @@
 		return  ($result);
 	}
 
+	function inside($conn){
+		$sql = "SELECT count(*) as count
+
+FROM validations AS A
+
+INNER JOIN (
+
+SELECT id, MAX(id) AS LogDate
+
+FROM validations
+
+GROUP BY rfid
+
+) AS B
+
+ON A.id = B.id 	where `inside` = 1 AND (`time` + 24*3600 > NOW())";
+		$result = $conn->query($sql)->fetch_assoc();
+				
+		return  ($result);
+	}
 ?>
