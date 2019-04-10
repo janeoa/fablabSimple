@@ -1,0 +1,74 @@
+<div class="w3-teal w3-container">
+	<h1>Регистрация</h1>
+</div>
+<div id="mainInfo" class="w3-container">
+	
+	<label>Имя<span class="w3-text-red">*</span></label>
+	<input id="name" class="w3-input" type="text" required>
+	
+	<label>почта<span class="w3-text-red">*</span></label>
+	<input id="email" class="w3-input" type="email" required>
+	
+	<label>student ID</label>
+	<input id="id" class="w3-input" type="text" placeholder="для студентов НУ">
+	<br>
+	<button class="w3-right w3-button w3-light-grey w3-hover-teal" type="button" onclick="loadDoc()">Зарегистрировать карту</button>
+	
+</div>
+
+<div id="success" class="w3-container w3-card-4 w3-animate-top w3-hide">
+	<h4>Отлично!</h4>
+	<p>Теперь приложите карту к считывателю в течении <span id="timer">180</span> секунд</p>
+</div>
+
+<script>
+
+function checkPending(){}
+	
+function loadDoc() {
+	
+	
+	
+	if(document.getElementById("name").value=="" || document.getElementById("email").value=="") error(); else
+	{
+		var url = "/create_user";
+		var params  = "name=" 			+ document.getElementById( "name").value;
+			params += "&email=" 		+ document.getElementById("email").value;
+			params += "&student_id="	+ document.getElementById(   "id").value;
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+	// 			console.log(this.responseText);
+				var response = JSON.parse(this.responseText);
+	// 			console.log(response);
+				if(response[0] == "Success"){
+					success();
+				}
+			}
+		}
+		xhr.open("POST", url, true);
+		
+		//Send the proper header information along with the request
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		
+		xhr.send(params);
+	}
+}
+
+function success(){
+	document.getElementById("mainInfo").style = "display: none";
+	document.getElementById("success").classList.remove("w3-hide");
+	var myVar = setInterval(decrement ,1000);
+}
+
+function decrement(){
+	var time = document.getElementById("timer").innerHTML;
+	if(time==0) clearInterval(myVar);
+	time --;
+	document.getElementById("timer").innerHTML = time;
+}
+
+function error(){
+	alert("Отказано");
+}
+</script>
