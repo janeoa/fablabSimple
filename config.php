@@ -31,6 +31,8 @@ if ($conn->connect_error) {
 require_once("api/enter.php");
 require_once("api/users.php");
 require_once("api/user.php");
+require_once("api/daneker.php");
+require_once("api/asset.php");
 
 
 	

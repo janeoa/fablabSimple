@@ -15,8 +15,10 @@ if(isset($_GET["params"])){
 		//Pages
 		case "register" : page("register.html"); break;
 		case "list" 	: page("listWO.php", $conn); break;
+		case "history" 	: page("history.php", $conn); break;
 		case "links" 	: page("links.html"); break;
 		case "stat" 	: page("stat.php", $conn); break;
+		case "userslist": page("userslist.php", $conn); break;
 
 		default : error(404, $conn, "page not found in index switch");
 	}

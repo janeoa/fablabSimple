@@ -5,6 +5,8 @@
 // 		echo "*".$raw["email"]."*";
 		
 		if(empty($raw) || $raw==NULL || $raw == "") error(400, $conn, "Empty create_user");
+
+		if((uidExists($conn, $raw['uid'], $raw['email'])) > 0) error(400, $conn, "Already exists");
 		
 // 		$data = alphanumeric($rfid);
 // 		$sql = "INSERT INTO `validations` (`name`, `student_id`) VALUES ('$rfid2', CURRENT_TIMESTAMP)";

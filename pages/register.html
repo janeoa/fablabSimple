@@ -1,28 +1,30 @@
 <div class="w3-teal w3-container">
 	<h1>Регистрация</h1>
 </div>
-<div id="mainInfo" class="w3-container">
+<form id="mainInfo" class="w3-container" action="/create_user" method="post">
 	
 	<label>Имя<span class="w3-text-red">*</span></label>
-	<input id="name" class="w3-input" type="text" required>
+	<input id="name" name="name" class="w3-input" type="text" required>
 	
 	<label>почта<span class="w3-text-red">*</span></label>
-	<input id="email" class="w3-input" type="email" required>
+	<input id="email" name="email" class="w3-input" type="email" required>
 	
 	<label>student ID</label>
-	<input id="id" class="w3-input" type="text" placeholder="для студентов НУ">
+	<input id="id" name="student_id" class="w3-input" type="text" placeholder="для студентов НУ">
 
 	<label>UID<span class="w3-text-red">*</span></label>
-	<input id="uid" class="w3-input" type="text" placeholder="UID">
+	<input id="uid" name="uid" class="w3-input" type="text" placeholder="UID">
 
 	<br>
-	<button class="w3-right w3-button w3-light-grey w3-hover-teal" type="button" onclick="loadDoc()">Зарегистрировать карту</button>
+	<button class="w3-right w3-button w3-light-grey w3-hover-teal" type="button" onclick="loadDoc()" >Зарегистрировать карту</button>
 	
-</div>
+<!-- 	onclick="loadDoc()" -->
+	
+</form>
 
 <div id="success" class="w3-container w3-card-4 w3-animate-top w3-hide">
 	<h4>Отлично!</h4>
-	<!--<p>Теперь приложите карту к считывателю в течении <span id="timer">180</span> секунд</p>-->
+<!-- 	<p>Теперь приложите карту к считывателю в течении <span id="timer">180</span> секунд</p> -->
 </div>
 
 <script>
@@ -63,7 +65,8 @@ function loadDoc() {
 function success(){
 	document.getElementById("mainInfo").style = "display: none";
 	document.getElementById("success").classList.remove("w3-hide");
-	var myVar = setInterval(decrement ,1000);
+// 	var myVar = setInterval(decrement ,1000);
+	window.location.replace("/userslist");
 }
 
 function decrement(){
