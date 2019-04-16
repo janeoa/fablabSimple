@@ -8,11 +8,11 @@
 		
 // 		$data = alphanumeric($rfid);
 // 		$sql = "INSERT INTO `validations` (`name`, `student_id`) VALUES ('$rfid2', CURRENT_TIMESTAMP)";
-		$stmt = $conn->prepare("INSERT INTO users (`name`, `student_id`, `email`, 'uid') VALUES (?, ?, ?, ?)");
+		$stmt = $conn->prepare("INSERT INTO users (`name`, `student_id`, `email`, `uid`) VALUES (?, ?, ?, ?)");
 		if ($stmt === FALSE) {
 			error(400, $conn, "Mysql Error: " . $conn->error);
 		}
-		$stmt->bind_param("sss", $name, $student_id, $email, $uid);
+		$stmt->bind_param("ssss", $name, $student_id, $email, $uid);
 		
 		$name = $raw["name"];
 		$student_id = $raw["student_id"];
@@ -23,7 +23,7 @@
 		
 		$last_id = $conn->insert_id;
 // 		echo "<h1>".$last_id."</h1>";
-		set_value_of_var($conn, "last_to_reg", $last_id);
+//		set_value_of_var($conn, "last_to_reg", $last_id);
 		
 		success();
 		
