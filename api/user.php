@@ -8,15 +8,16 @@
 		
 // 		$data = alphanumeric($rfid);
 // 		$sql = "INSERT INTO `validations` (`name`, `student_id`) VALUES ('$rfid2', CURRENT_TIMESTAMP)";
-		$stmt = $conn->prepare("INSERT INTO users (`name`, `student_id`, `email`) VALUES (?, ?, ?)");
+		$stmt = $conn->prepare("INSERT INTO users (`name`, `student_id`, `email`, 'uid') VALUES (?, ?, ?, ?)");
 		if ($stmt === FALSE) {
 			error(400, $conn, "Mysql Error: " . $conn->error);
 		}
-		$stmt->bind_param("sss", $name, $student_id, $email);
+		$stmt->bind_param("sss", $name, $student_id, $email, $uid);
 		
 		$name = $raw["name"];
 		$student_id = $raw["student_id"];
 		$email = $raw["email"];
+		$uid = $raw["uid"];
 		
 		$stmt->execute();
 		
