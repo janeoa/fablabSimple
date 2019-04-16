@@ -11,6 +11,10 @@
 	
 	<label>student ID</label>
 	<input id="id" class="w3-input" type="text" placeholder="для студентов НУ">
+
+	<label>UID<span class="w3-text-red">*</span></label>
+	<input id="uid" class="w3-input" type="text" placeholder="UID">
+
 	<br>
 	<button class="w3-right w3-button w3-light-grey w3-hover-teal" type="button" onclick="loadDoc()">Зарегистрировать карту</button>
 	
@@ -29,12 +33,13 @@ function loadDoc() {
 	
 	
 	
-	if(document.getElementById("name").value=="" || document.getElementById("email").value=="") error(); else
+	if(document.getElementById("name").value=="" || document.getElementById("email").value=="" || document.getElementById("uid").value=="") error(); else
 	{
 		var url = "/create_user";
 		var params  = "name=" 			+ document.getElementById( "name").value;
 			params += "&email=" 		+ document.getElementById("email").value;
 			params += "&student_id="	+ document.getElementById(   "id").value;
+			params += "&uid="	        + document.getElementById(  "uid").value;
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
