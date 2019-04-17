@@ -6,7 +6,7 @@
 		
 		if(empty($raw) || $raw==NULL || $raw == "") error(400, $conn, "Empty create_user");
 
-		if((uidExists($conn, $raw['uid'], $raw['email'])) > 0) error(400, $conn, "Already exists");
+		if((uidExists($conn, $raw['uid'], $raw['email']))>0) error(400, $conn, "Already exists");
 		
 // 		$data = alphanumeric($rfid);
 // 		$sql = "INSERT INTO `validations` (`name`, `student_id`) VALUES ('$rfid2', CURRENT_TIMESTAMP)";
@@ -27,7 +27,7 @@
 // 		echo "<h1>".$last_id."</h1>";
 //		set_value_of_var($conn, "last_to_reg", $last_id);
 		
-		success();
+		//success();
 		
 		$stmt->close();
 	}

@@ -16,7 +16,7 @@
 	<input id="uid" name="uid" class="w3-input" type="text" placeholder="UID">
 
 	<br>
-	<button class="w3-right w3-button w3-light-grey w3-hover-teal" type="button" onclick="loadDoc()" >Зарегистрировать карту</button>
+	<button class="w3-right w3-button w3-light-grey w3-hover-teal" type="button" onClick="loadDoc()">Зарегистрироваться</button>
 	
 <!-- 	onclick="loadDoc()" -->
 	
@@ -31,12 +31,9 @@
 
 function checkPending(){}
 	
-function loadDoc() {
-	
-	
-	
-	if(document.getElementById("name").value=="" || document.getElementById("email").value=="" || document.getElementById("uid").value=="") error(); else
-	{
+function loadDoc() {	
+	if(document.getElementById("name").value=="" || document.getElementById("email").value=="" || document.getElementById("uid").value=="") error(); 
+	else {
 		var url = "/create_user";
 		var params  = "name=" 			+ document.getElementById( "name").value;
 			params += "&email=" 		+ document.getElementById("email").value;
@@ -51,6 +48,9 @@ function loadDoc() {
 				if(response[0] == "Success"){
 					success();
 				}
+			}
+			else if(this.status == 400){
+				alert("Email or UID already exists!");
 			}
 		}
 		xhr.open("POST", url, true);

@@ -1,5 +1,5 @@
 <div class="w3-container w3-teal">
-	<h1>Список зарегистрированных</h1>
+	<h1>Профиль</h1>
 </div>
 <div class="">
 	<table class="w3-table-all">

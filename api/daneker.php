@@ -19,10 +19,17 @@ function userlist($conn, $toarr = False){
 }
 
 function uidExists($conn, $uid, $email) {
-    $sql = "SELECT * FROM `users` ORDER BY id DESC where `uid`='$uid' or `email`='$email'";
+    $sql = "SELECT * FROM `users` where `uid`='$uid' or `email`='$email' ORDER BY id DESC";
 		
     $result = $conn->query($sql);
 
     return ($result->num_rows);
 }
+
+
+function userCount($conn){
+    $sql = "SELECT COUNT(*) as count FROM `users`";
+        $result = $conn->query($sql)->fetch_assoc();				
+        return  ($result["count"]);
+    }
 ?>
